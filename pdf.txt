@@ -1,0 +1,41 @@
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileOutputStream;
+public class App {
+    public static void main(String args[]){
+        Document document = new Document(PageSize.A4, 30, 30, 150, 50);
+        FileOutputStream fos;
+                try{
+        fos = new FileOutputStream("C:\\Users\\vsing121\\Desktop\\pdf\\filepath.pdf");
+        PdfWriter writer = PdfWriter.getInstance(document,fos );
+        document.open();
+        Rectangle rect = writer.getPageSize();
+        float[] columnWidths = {2f, 1f,2.5f};
+        PdfPTable table = new PdfPTable(columnWidths);
+        table.setTotalWidth(527);
+        //table.getDefaultCell().setBorder(Rectangle.);
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+        table.addCell("abc left");
+        table.addCell("");
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
+        table.addCell("abc right");
+        table.writeSelectedRows(
+                0, -1, rect.getLeft(100), rect.getTop(300), writer.getDirectContent());
+                }catch(Exception e){
+
+                }
+        document.close();
+
+    }
+    }
+
+
+ <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>itextpdf</artifactId>
+        <version>5.5.13</version>
+    </dependency>
